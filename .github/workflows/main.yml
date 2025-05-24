@@ -1,19 +1,22 @@
-name: Workflow with Email Identifier
+name: Email Action Workflow
 
 on:
-  # Runs when manually triggered
-  workflow_dispatch:
-  # Also runs on push to main branch
   push:
-    branches: [ main ]
+    branches: [ main, master ]
+  workflow_dispatch:  # Allows manual triggering
 
 jobs:
-  hello-world:
+  test:
     runs-on: ubuntu-latest
     
     steps:
-      - name: youremailaddresshere
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: 23f1000193@ds.study.iitm.ac.in
         run: echo "Hello, world!"
         
-      - name: Display date
-        run: date
+      - name: Additional verification step
+        run: |
+          echo "Repository: ${{ github.repository }}"
+          echo "Workflow completed successfully"
